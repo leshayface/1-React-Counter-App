@@ -48,7 +48,7 @@ class App extends Component {
           <a class="navbar-brand" href="#">Navbar</a>
         </nav>
         <div className="container-md">
-          <button className="btn btn-primary btn-sm m-2" onClick={this.handleReset}>Reset</button>
+          <button className="btn btn-primary btn-sm" style={{marginBottom: "20px"}} onClick={this.handleReset}>Reset</button>
           <Counters
             onIncrement={this.handleIncrement}
             onDecrement={this.handleDecrement}
