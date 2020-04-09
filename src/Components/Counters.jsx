@@ -5,6 +5,11 @@ class Counters extends Component {
     render() {
         return (
             <div>
+                <button
+                    className="btn btn-primary btn-sm"
+                    style={{marginBottom: "20px"}}
+                    onClick={this.props.onReset}>Reset
+                </button>
                 {this.props.counters.map(counter => (
                     <Counter
                         key={ counter.id }

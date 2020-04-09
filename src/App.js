@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import Counters from './Components/Counters';
+import Navbar from './Components/Navbar'
 
 class App extends Component {
   state = { 
@@ -43,20 +44,20 @@ class App extends Component {
 
   render() { 
     return (
-      <div className="container-fluid" style={{padding: '0'}}>
-        <nav class="navbar navbar-dark bg-dark" style={{marginBottom: '30px'}}>
-          <a class="navbar-brand" href="#">Navbar</a>
-        </nav>
-        <div className="container-md">
-          <button className="btn btn-primary btn-sm" style={{marginBottom: "20px"}} onClick={this.handleReset}>Reset</button>
-          <Counters
-            onIncrement={this.handleIncrement}
-            onDecrement={this.handleDecrement}
-            onDelete={this.handleDelete}
-            counters={this.state.counters}
-          />
-        </div>
-      </div>
+      <React.Fragment>
+        <Navbar totalCounters={this.state.counters.filter(item => item.value > 0).length} />
+        <main className="container-fluid">
+          <div className="container-md">
+            <Counters
+              onIncrement={this.handleIncrement}
+              onDecrement={this.handleDecrement}
+              onReset={this.handleReset}
+              onDelete={this.handleDelete}
+              counters={this.state.counters}
+            />
+          </div>
+        </main>
+      </React.Fragment>
     );
   }
 }
