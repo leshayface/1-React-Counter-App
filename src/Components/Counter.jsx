@@ -1,46 +1,45 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-class Counter extends Component {
-    render() { 
-        return (
-          <div className="row justify-content-center">
-            <div className="col"><h5 style={{width: "100%"}}>Counter {this.props.counter.id}</h5></div>
-            <div className="col-2">
-              <span className={this.getBadgeClasses()}>{this.formatCount()}</span>
-            </div>
-            <div className="col-8">
-              <button 
-                className="btn btn-secondary btn-sm m-2" 
-                onClick={() => (this.props.onIncrement(this.props.counter))}
-              >
-                +
-              </button>
-              <button 
-                className="btn btn-secondary btn-sm m-2" 
-                onClick={() => (this.props.onDecrement(this.props.counter))}
-              >
-                -
-              </button>
-              <button 
-                className="btn btn-danger btn-sm" 
-                onClick={() => (this.props.onDelete(this.props.counter.id))}
-              >
-                  Delete
-              </button>
-            </div>
-          </div>  
-         );
-    }
+const Counter = ({counter, onIncrement, onDecrement, onDelete}) => {
 
-    formatCount() {
-      return this.props.counter.value === 0 ? 'Zero' : this.props.counter.value;
-    }
+  const formatCount = () => {
+    return counter.value === 0 ? 'Zero' : counter.value;
+  }
 
-    getBadgeClasses() {
-      let classes = "badge m-2 badge-"
-      classes += this.props.counter.value === 0 ? "warning" : "primary";
-      return classes;
-    }
+  const getBadgeClasses = () => {
+    let classes = "badge m-2 badge-"
+    classes += counter.value === 0 ? "warning" : "primary";
+    return classes;
+  }
+
+  return (
+    <div className="row justify-content-center">
+      <div className="col"><h5 style={{width: "100%"}}>Counter {counter.id}</h5></div>
+      <div className="col-2">
+        <span className={getBadgeClasses()}>{formatCount()}</span>
+      </div>
+      <div className="col-8">
+        <button 
+          className="btn btn-secondary btn-sm m-2" 
+          onClick={() => (onIncrement(counter))}
+        >
+          +
+        </button>
+        <button 
+          className="btn btn-secondary btn-sm m-2" 
+          onClick={() => (onDecrement(counter))}
+        >
+          -
+        </button>
+        <button 
+          className="btn btn-danger btn-sm" 
+          onClick={() => (onDelete(counter.id))}
+        >
+            Delete
+        </button>
+      </div>
+    </div>  
+  )
 }
  
 export default Counter;
